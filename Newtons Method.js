@@ -64,9 +64,7 @@ var animation = 0;
 var timeout_id;
 
 function animate() {
-    // console.log("here, animation is", animation);
     if (animation == 0) { //if animation is off, start it
-        // console.log("setting animation to 5");
         animation = 10;
     }
     draw_setup();
