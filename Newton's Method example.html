@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>
         Newton's Method
@@ -9,15 +10,23 @@
 
 <body>
     <p> This is a small example of Newton's method. </p>
+    <div>
     <canvas id="Newton's method animation" width="700" height="350"
         style="background: white; border:1px solid grey"></canvas>
-        <script>
-            const canvas = document.getElementById("Newton's method animation");
-            const ctx = canvas.getContext("2d");
-            const x_scale = canvas.width / 100; //every 100 pixels is 1 unit
-            const y_scale = canvas.height / 50; //every 50 pixels is 1 unit
-            main();
-        </script>
+    </div>
+    <script>
+        const canvas = document.getElementById("Newton's method animation");
+        const ctx = canvas.getContext("2d");
+        ctx.transform(1, 0, 0, -1, 0, canvas.height)
+        canvas.width = canvas.parentElement.clientWidth;
+        canvas.height = canvas.width / 2;
+        var size_dot = canvas.width / 100;
+        var size_line = canvas.width / 200;
+        var x_scale = 5;//14; //x asix spans 7 units
+        var y_scale = 7;//x_scale*canvas.height/canvas.width;
+        canvas.onclick = newtons_method_click;
+        newtons_method_animation();
+    </script>
 </body>
 
 </html>

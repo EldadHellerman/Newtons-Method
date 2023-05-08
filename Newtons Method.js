@@ -33,7 +33,7 @@ function draw_line(sx, sy, ex, ey) {
 
 function draw_point(x, y) {
     [cx, cy] = map_to_canvas(c, y);
-    ctx.ellipse(cx, cy, 5, 5, 0, 0, 360);
+    ctx.ellipse(cx, cy, size_dot, size_dot, 0, 0, 360);
     ctx.fill();
 }
 
@@ -54,10 +54,10 @@ function draw_function(func, color) {
 
 function draw_setup() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.lineWidth = 3;
+    ctx.lineWidth = size_line;
     draw_axis();
     draw_function(f, "red");
-    ctx.lineWidth = 1;
+    ctx.lineWidth = size_line / 2;
 }
 
 var animation = 0;
@@ -87,10 +87,4 @@ function newtons_method_animation() {
     c = -.4;
     animation = 0;
     animate();
-}
-
-function main() {
-    ctx.transform(1, 0, 0, -1, 0, canvas.height)
-    canvas.onclick = newtons_method_click;
-    newtons_method_animation();
 }
