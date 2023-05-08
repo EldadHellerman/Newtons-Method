@@ -31,10 +31,13 @@ function draw_line(sx, sy, ex, ey) {
     ctx.lineTo(ex, ey);
 }
 
-function draw_point(x, y) {
+function draw_point(x, y, color) {
+    ctx.beginPath();
+    ctx.strokeStyle = color;
     [cx, cy] = map_to_canvas(c, y);
     ctx.ellipse(cx, cy, size_dot, size_dot, 0, 0, 360);
-    ctx.fill();
+    ctx.stroke();
+    // ctx.fill();
 }
 
 function draw_axis(func) {
@@ -69,9 +72,17 @@ function animate() {
     }
     draw_setup();
     draw_function((x) => (f(c) + df(c) * (x - c)), "blue");
-    ctx.fillStyle = "green";
+            
+    ctx.beginPath();
+    ctx.strokeStyle = "green";
+    [sx,sy] = map_to_canvas(c,0);
+    [ex,ey] = map_to_canvas(c,f(c));
+    draw_line(sx,sy,ex,ey);
+    ctx.stroke();
+    draw_point(c, f(c),"green");
+    
     c = newtons_method(c);
-    draw_point(c, 0);
+    draw_point(c, 0,"blue");
     if (--animation) timeout_id = setTimeout(animate, 1000);
 }
 
